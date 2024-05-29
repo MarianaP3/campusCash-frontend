@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<div class="header">
+		<i class="bi bi-list menu-icon" style="color: white; font-size: 24px;"></i>
+		<div class="header-text">CampusCash</div>
+	</div>
+
+	<div id="menu" class="menu">
+	    <a href="index.html" class="menu-text">Iniciar sesión</a>
+	    <a href="login.html" class="menu-text">Registrarse</a>
+	    <a href="income.html" class="menu-text">Ingresos</a>
+        <a href="egress.html" class="menu-text">Egresos</a>
+        <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
+        <a href="education.html" class="menu-text">Educación financiera</a>
+	</div>
+
+	<div class="containerDash">
+		<div class="titleDash">Dashboard</div>
+		<div class="subtitleDash">Mi presupuesto</div>
+	    <div class="chart-container">
+            <canvas id="myChart" style="margin-left: 20px;"></canvas>
+            <img src="img/points.png" alt="points" class="points">
+            <div class="column" style="margin-left: 150px;">
+            	<div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;" >Ingresos</div>
+            	<div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;">$100, 000.00</div>
+            	<div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;" >Egresos</div>
+            	<div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;">$100, 000.00</div>
+            </div>
+        </div>
+        <div class="subtitleDash" style="margin-top: 60px; margin-left: 70px; font-size: 22px; width: 250px;">Desglose</div>
+        <div class="cards-alignment">
+        	<div class="simple-card" style="margin-left: 70px;">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        </div>
+        <div class="cards-alignment">
+        	<div class="simple-card" style="margin-left: 70px;">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        	<div class="simple-card">
+        		Alimentación<br>
+        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+        		Valoración:<br> $500
+        	</div>
+        </div>
+
+        <script>
+            // Datos para la gráfica
+            var data = {
+                datasets: [{
+                    data: [50, 100, 300, 30, 48],
+                    backgroundColor: ['#0753B2', '#746EE5', '#00B99D','#FF9F00', '#00E7FF'],
+                    borderWidth: 0 // Establece el ancho del borde en 0 para hacer la gráfica hueca
+                }]
+            };
+            // Configuración de la gráfica
+            var options = {
+    	    	cutoutPercentage: 20
+    		};
+            // Crear la gráfica
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut', // Tipo de gráfica de pastel hueca
+                data: data,
+                options: options
+            });
+        </script>
+	</div>
+	<script>
+        // Función para mostrar u ocultar el menú al hacer clic en el icono
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        });
+    </script>
+	<div class="footer">@campusCash</div>
+</body>
+</html>

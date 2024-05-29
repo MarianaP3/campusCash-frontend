@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Income</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="header">
+		<i class="bi bi-list menu-icon" style="color: white; font-size: 24px;"></i>
+		<div class="header-text">CampusCash</div>
+	</div>
+	<div id="menu" class="menu">
+	    <a href="index.html" class="menu-text">Iniciar sesión</a>
+	    <a href="login.html" class="menu-text">Registrarse</a>
+        <a href="dashboard.html" class="menu-text">Dashboard</a>
+        <a href="egress.html" class="menu-text">Egresos</a>
+        <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
+        <a href="education.html" class="menu-text">Educación financiera</a>
+	</div>
+	<div class="titleDash">Ingresos</div>
+	<div class="income-container">
+		<div class="statistics-card">
+			<div style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold;">Estadísticas mensuales</div>
+			<div style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 100">Ingresos</div>
+			<canvas id="myChart" style="width: 1550; text-align: center;" ></canvas>
+			<div class="vineta">
+				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Empleo
+				<div class="porcentaje">0%</div>
+			</div>
+			<div class="vineta">
+				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Apoyo familiares
+				<div class="porcentaje">0%</div>
+			</div>
+			<div class="vineta">
+				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Beca
+				<div class="porcentaje">0%</div>
+			</div>
+			<div class="vineta">
+				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Emprendimiento
+				<div class="porcentaje">0%</div>
+			</div>
+		</div>
+		<div href="login.html" class="income-right-container">
+			
+			<a href="#" class="addMovement-button" data-toggle="modal" data-target="#exampleModal">+ Agregar movimiento</a>
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel" style="font-family: 'Montserrat', sans-serif; font-size: 20px;font-weight: bold">Agregar movimiento</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <div>
+			        	<div style="font-family: 'Montserrat', sans-serif; font-size: 18px; margin-top: 10px; display: flex; flex-direction: row;">
+			        		<div style="margin-left: 10px">Concepto</div>
+			        		<input type="text" style="margin-left: 135px;">
+			        	</div>
+			        	<div style="font-family: 'Montserrat', sans-serif; font-size: 18px; margin-top: 10px; display: flex; flex-direction: row;">
+			        		<div style="margin-left: 10px">Cantidad</div>
+			        		<div style="margin-left: 140px;">
+							  <input id="numberInput" type="number" value="0" min="0">
+							</div>
+			        	</div>
+			        	<div style="font-family: 'Montserrat', sans-serif; font-size: 18px; margin-top: 10px; display: flex; flex-direction: row;">
+			        		<div style="margin-left: 10px">Categoría</div>
+			        		<select style="margin-left: 135px; width: 230px; height: 33px">
+							  <option>Empleo</option>
+							  <option>Apoyo familiares</option>
+							  <option>Beca</option>
+							  <option>Emprendimiento</option>
+							</select>
+			        	</div>
+			        </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" style="font-family: 'Montserrat', sans-serif; background-color: #cdcdcd; border: solid 1px #cdcdcd" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			        <button type="button" style="font-family: 'Montserrat', sans-serif; background-color: #77A6B6; border: solid 1px #77A6B6" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<div style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; margin-top: 22px">Últimos movimientos</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #1</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #2</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #3</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #4</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #5</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+			<div class="info-container">
+				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+				<div style="float: left;margin-left: 15px;width: auto;">Concepto #6</div>
+				<div style="float: left;margin-left: 165px">$100.00</div>
+			</div>
+		</div>
+	</div>
+
+
+
+    <script>
+        // Datos para la gráfica de barras
+        var data = {
+            labels: ['Empleo', 'Apoyo familiares', 'Beca', 'Emprendimiento'],
+            datasets: [{
+            	label: 'Ocultar gráfica',
+                data: [12, 19, 3, 5], // Datos de ventas para cada mes
+                backgroundColor: '#9DC3C2', // Color de fondo de las barras
+                borderColor: '#77A6B6', // Color del borde de las barras
+                borderWidth: 1 // Ancho del borde de las barras
+            }]
+        };
+
+        // Configuración de la gráfica de barras
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true // Comienza el eje y desde cero
+                    }
+                }]
+            },
+            legend: {
+                display: false // Oculta la leyenda
+            }
+        };
+
+        // Crear la gráfica de barras
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfica
+            data: data,
+            options: options
+        });
+    </script>
+
+	<script>
+        // Función para mostrar u ocultar el menú al hacer clic en el icono
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        });
+    </script>
+	<div class="footer">@campusCash</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

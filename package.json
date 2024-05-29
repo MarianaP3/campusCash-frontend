@@ -1,0 +1,33 @@
+{
+  "name": "campuscash-frontend",
+  "version": "1.0.0",
+  "description": "Proyecto financiero de desarrollo web",
+  "main": "script.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarianaP3/CampusCash.git"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "cors": "^2.8.5",
+    "sequelize": "^6.3.5",
+    "mysql2": "^2.1.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express-validator": "^6.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarianaP3/CampusCash/issues"
+  },
+  "homepage": "https://github.com/MarianaP3/CampusCash#readme"
+}

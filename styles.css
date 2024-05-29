@@ -1,0 +1,475 @@
+.body {
+    width: 100%;
+    height: 100%;
+    margin: 0px; 
+    padding: 0px; 
+}
+
+.principal-banner-left{
+	width: 49%;
+	height: 587px;
+	float: left;
+	margin-top: 0px;
+	margin-right: 0px;
+	background-color: white;
+}
+.principal-banner-right {
+    width: 49%;
+    height: 587px;
+    background-color: white;
+    text-align: left;
+    font-size: 50px;
+    color: #77A6B6; 
+    font-weight: bold; 
+    font-family: 'Montserrat', sans-serif; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+}
+.plain-text {
+    font-family: 'Montserrat', sans-serif; 
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    margin-top: 15px;
+    font-weight: lighter;
+    width: 50%;
+    border: solid 1px white;
+}
+.input-container {
+    font-family: 'Montserrat', sans-serif; 
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    display: inline-block; /* Cambiado de 'flex' a 'inline-block' */
+    align-items: center; 
+    margin-top: 5px;
+    font-weight: lighter;
+    width: 50%;
+    height: 31px;
+    border: solid 1px #686565;
+    border-radius: 3px;
+}
+
+.enter-button {
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-top: 25px;
+    width: 50%;
+    height: 38px;
+    background-color: #77A6B6; 
+    border-radius: 3px;
+}
+.register{
+	font-family: 'Montserrat', sans-serif; 
+    color: #77A6B6; 
+    font-size: 12px;
+    font-weight: bold;
+}
+.text{
+	font-family: 'Montserrat', sans-serif; 
+    color: black; 
+    font-size: 12px;
+    font-weight: lighter;
+    margin-top: 15px;
+}
+
+
+
+.containerDash{
+	width: 90%;
+    height: auto;
+    background-color: white;
+    text-align: left;
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-direction: column;
+}
+.header{
+	width: 98%;
+	height: 50px;
+	float: left;
+	margin-top: 0px;
+	margin-right: 0px;
+	background-color: #4D7298;
+	color: white;
+	font-weight: bold;
+	display: flex; 
+    align-items: center; 
+    padding-left: 25px;
+}
+.header-text{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 18px;
+	width: auto;
+	height: auto;
+	float: left;
+	margin-left: 86%;
+	color: white;
+	font-weight: bold;
+}
+.titleDash{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 33px;
+	width: auto;
+	height: auto;
+	float: left;
+	margin-left: 6%;
+	margin-top: 4%;
+	color: black;
+	font-weight: bold;
+}
+.subtitleDash{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 20px;
+	width: auto;
+	height: auto;
+	float: left;
+	margin-left: 6%;
+	margin-top: 3px;
+	color: black;
+	font-weight: bold;
+}
+.chart-container{
+	width:1200px;
+	height: 300px;
+	border: solid 1px white;
+	margin-top: 45px;
+	margin-left: 70px;
+	display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+}
+.points{
+	width: 230px;
+	height: auto;
+	float: left;
+	margin-left: 55px;
+	margin-top: 40px;
+}
+.column{
+	display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    border: solid 1px white;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+}
+.simple-card{
+	border:solid 2px #9DC3C2;
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 20px;
+	width: 200px;
+	height: 240px;
+	margin-left: 40px;
+	margin-top: 25px;
+	text-align: center;
+	padding-top: 15px;
+}
+.cards-alignment{
+	display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    border: solid 1px white;
+    width: auto;
+    height: auto;
+}
+.footer{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 20px;
+	width: 100%;
+	height: 170px;
+	float: left;
+	margin-top: 4%;
+	margin-right: 0px;
+	background-color: #4D7298;
+	color: white;
+	font-weight: bold;
+	display: flex; 
+    align-items: center; 
+    padding-left: 25px;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    padding-bottom: 15px;
+}
+
+
+
+/* Estilo para el menú desplegable */
+.menu {
+    display: none;
+    position: absolute;
+    top: 50px; /* Ajusta la posición del menú según sea necesario */
+    left: 0;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+}
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+.menu a:hover {
+    background-color: #9DC3C2;
+}
+.menu-text{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 12px;
+}
+
+
+.income-container{
+	display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    height: auto;
+    width: 97%;
+    margin-top: 55px;
+    margin-left: 15px;
+}
+.statistics-card{
+	border: solid 1px #B7B7B7;
+	width: 40%;
+	height: 580px;
+	margin-top: 35px;
+	margin-left: 60px;
+	display: flex; 
+    align-items: flex-start; 
+    justify-content: flex-start;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.1); 
+    border-radius: 2px;
+    padding: 28px;
+    flex-direction: column;
+}
+.vineta{
+	margin-top: 25px;
+	margin-left: 25px;
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 18px;
+	width: 92%;
+}
+.porcentaje{
+	width: 55px;
+	height: 30px;
+	background-color: #77A6B6;
+	border-radius: 2px;
+	color: white;
+	float: right;
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 18px;
+	font-weight: bold;
+	display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.addMovement-button {
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+    height: 38px;
+    background-color: #77A6B6; 
+    border-radius: 3px;
+    text-decoration: none;
+}
+.income-right-container{
+	display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    float: left;
+    margin-top: 35px;
+    margin-left: 70px;
+    flex-direction: column;
+    width: 495px;
+}
+.info-container{
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 20px;
+	border: solid 2px #9DC3C2;
+    margin-top: 10px;
+    border-radius: 2px;
+    display: flex; 
+    flex-direction: row;
+    height: 60px;
+    width: 99%;
+    justify-content: center; 
+    align-items: center; 
+}
+.addMovement-button:hover {
+    background-color: #567c89; /* Cambia el color de fondo al pasar el mouse */
+}
+.addMovement-button:active {
+    background-color: #455d66; /* Cambia el color de fondo cuando se presiona el botón */
+}
+.addMovement-button:focus {
+    outline: none; /* Asegúrate de eliminar el contorno del botón cuando está enfocado */
+}
+
+
+
+.budget-main-container{
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 20px;
+    margin-top: 90px;
+    margin-bottom: 30px;
+    display: flex; 
+    flex-direction: row;
+    height: 600px;
+    padding-bottom: 10px;
+    width: 100%;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-direction: column;
+}
+/* Estilos para el switch */
+.switch-checkbox {
+    display: none; /* Oculta el checkbox */
+}
+
+.switch-label {
+    display: inline-block;
+    width: 38px; /* Ancho del switch */
+    height: 18px; /* Altura del switch */
+    background-color: #ccc; /* Color de fondo del switch */
+    border-radius: 12.5px; /* Radio de borde para hacerlo redondo */
+    position: relative;
+    cursor: pointer;
+}
+
+/* Estilos para el indicador (punto o barra que se desliza) */
+.switch-label::after {
+    content: '';
+    position: absolute;
+    top: 2px; /* Alinea el indicador verticalmente */
+    left: 2px; /* Posición inicial del indicador */
+    width: 14px; /* Ancho del indicador */
+    height: 14px; /* Altura del indicador */
+    background-color: white; /* Color del indicador */
+    border-radius: 50%; /* Hace el indicador redondo */
+    transition: left 0.3s; /* Agrega una transición suave cuando cambia el estado */
+}
+/* Estilos cuando el switch está activado */
+.switch-checkbox:checked + .switch-label {
+    background-color: #77A6B6; /* Cambia el color de fondo cuando el switch está activado */
+}
+.switch-checkbox:checked + .switch-label::after {
+    left: calc(100% - 23px); /* Mueve el indicador a la posición de activado */
+}
+.saveResults-button {
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    background-color: #77A6B6; 
+    border-radius: 3px;
+    text-decoration: none;
+    float: left;
+    margin-top: 25px;
+    margin-left: 1125px;
+}
+
+
+
+.educationMainContainer{
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 20px;
+    margin-top: 90px;
+    margin-bottom: 30px;
+    display: flex; 
+    flex-direction: row;
+    height: 1300px;
+    padding-bottom: 10px;
+    width: 95%;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-direction: column;
+}
+.simple-card-blog{
+    border:solid 3px #9DC3C2;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    width: 230px;
+    height: 318px;
+    margin-left: 30px;
+    margin-top: 15px;
+    text-align: center;
+    padding-top: 0px;
+}
+.createArticle-button {
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 180px;
+    height: 40px;
+    background-color: #77A6B6; 
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.createArticle-button:hover {
+    background-color: #567c89; /* Cambia el color de fondo al pasar el mouse */
+    color: white;
+}
+.createArticle-button:active {
+    background-color: #455d66; /* Cambia el color de fondo cuando se presiona el botón */
+}
+.createArticle-button:focus {
+    outline: none; /* Asegúrate de eliminar el contorno del botón cuando está enfocado */
+}
+.cancelArticle-button {
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 180px;
+    height: 40px;
+    background-color: #cdcdcd; 
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.cancelArticle-button: hover{
+    background-color: #77A6B6; /* Cambia el color de fondo al pasar el mouse */
+    color: white;
+}
+.seeMainContainer{
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 20px;
+    margin-top: 90px;
+    display: flex; 
+    flex-direction: row;
+    height: auto;
+    width: 95%;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-direction: column;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ver articulo</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<i class="bi bi-list menu-icon" style="color: white; font-size: 24px;"></i>
+		<div class="header-text">CampusCash</div>
+	</div>
+
+	<div id="menu" class="menu">
+	    <a href="index.html" class="menu-text">Iniciar sesión</a>
+	    <a href="login.html" class="menu-text">Registrarse</a>
+	    <a href="dashboard.html" class="menu-text">Dashboard</a>
+	    <a href="income.html" class="menu-text">Ingresos</a>
+        <a href="egress.html" class="menu-text">Egresos</a>
+        <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
+        <a href="education.html" class="menu-text">Educación financiera</a>
+	</div>
+
+	<div class="seeMainContainer">
+		<div class="titleDash">Ahorro en la juventud</div>
+		<div style="font-size: 24px; font-family: 'Montserrat', sans-serif;margin-left: 80px;">Mariana Pérez</div>
+		<div style="display: flex; flex-direction: column;">
+			
+		<div style="display: flex; flex-direction: row;float:left; margin-left: 0px;width: auto;margin-top: 40px">
+			<div><img src="img/savings.jpg" alt="Banner" style=" width: 400px; margin-left: 80px"></div>
+			<div style="margin-left: 40px;font-size: 18px; font-family: 'Montserrat', sans-serif;width: 700px"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum leo nisi, sit amet pharetra nunc efficitur nec. Nam consectetur laoreet ex, sed tempor elit venenatis id. Mauris sit amet orci tempor, porta nulla sit amet, varius felis. Integer elit nunc, euismod eget mi in, lobortis euismod eros. Nullam a ultricies nulla. Aenean arcu odio, pharetra vitae accumsan ac, maximus feugiat ipsum. Ut cursus purus et euismod posuere.</p><p>Duis eros odio, mollis sed elit id, lobortis commodo nulla. Suspendisse potenti. Morbi sollicitudin, felis nec tempus porttitor, erat orci hendrerit velit, et imperdiet mauris risus in eros. Aliquam accumsan velit at nunc venenatis ultricies. Aliquam luctus eros felis, vel semper elit dictum vitae. Vestibulum vitae laoreet odio. Vestibulum ut turpis ultricies, facilisis mauris id, fermentum arcu. Morbi ipsum urna, bibendum eu molestie ac, rhoncus id arcu. Ut porttitor, quam tristique ultricies tincidunt, felis ante fermentum magna, in tincidunt dolor mauris eget libero. Quisque quis varius erat. Morbi a efficitur leo, ac facilisis neque. Vivamus hendrerit enim ac metus facilisis, nec molestie ante rutrum. Etiam egestas massa enim, eget ultricies magna bibendum in. Maecenas ac ex justo. Integer et consectetur magna. Vestibulum placerat non libero non fringilla.</p></div>
+		</div>
+		<a href="education.html" class="createArticle-button" style="margin-left: 925px;margin-top: 40px;">Regresar</a>
+	</div>
+	
+
+	<div class="footer">@campusCash</div>
+
+	<script>
+        // Función para mostrar u ocultar el menú al hacer clic en el icono
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
