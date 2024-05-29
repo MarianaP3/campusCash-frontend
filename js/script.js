@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name, email, password
         ) 
 
-        fetch('/', {
+        fetch('http://localhost:3000/api/usuarios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
