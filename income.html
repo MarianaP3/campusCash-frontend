@@ -89,36 +89,7 @@
 			</div>
 
 			<div style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; margin-top: 22px">Últimos movimientos</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #1</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #2</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #3</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #4</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #5</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
-			<div class="info-container">
-				<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-				<div style="float: left;margin-left: 15px;width: auto;">Concepto #6</div>
-				<div style="float: left;margin-left: 165px">$100.00</div>
-			</div>
+			
 		</div>
 	</div>
 
@@ -176,5 +147,52 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="js/script.js" defer></script>
+	<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
+            fetch('http://localhost:3000/api/movimientos/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('authToken') // Agrega el token de autenticación si es necesario
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error en la solicitud');
+                }
+            })
+			// Manejar la respuesta del servidor
+			.then(data => {
+				const incomeMovimientos = data.filter(movimiento => movimiento.type === 'income');
+				// Manejar la respuesta del servidor
+				console.log('Movimientos de ingresos:', incomeMovimientos);
+				// Seleccionar el contenedor donde se mostrarán los movimientos
+				const container = document.querySelector('.income-right-container');
+				// Iterar sobre los datos de los movimientos
+				incomeMovimientos.forEach(movimiento => {
+					// Crear un nuevo contenedor de movimiento
+					const movimientoContainer = document.createElement('div');
+					movimientoContainer.classList.add('info-container');
+					// Crear el contenido para el movimiento
+					const content = `
+						<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
+						<div style="float: left;margin-left: 15px;width: auto;">${movimiento.concept}</div>
+						<div style="float: left;margin-left: 165px;">$${movimiento.amount.toFixed(2)}</div>
+					`;
+					// Agregar el contenido al contenedor de movimiento
+					movimientoContainer.innerHTML = content;
+					// Agregar el contenedor de movimiento al contenedor principal
+					container.appendChild(movimientoContainer);
+				});
+			})
+            .catch(error => {
+                console.error('Error:', error);
+                // Manejar el error
+            });
+        });
+    </script>
 </body>
 </html>
