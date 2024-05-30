@@ -29,19 +29,19 @@
 			<canvas id="myChart" style="width: 1550; text-align: center;" ></canvas>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Empleo
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="empleoTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Apoyo familiares
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="familiaTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Beca
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="becaTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Emprendimiento
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="emprendimientoTotal"></div>
 			</div>
 		</div>
 		<div href="login.html" class="income-right-container">
@@ -93,46 +93,14 @@
 		</div>
 	</div>
 
+	<div class="footer">@campusCash</div>
 
-
-    <script>
-        // Datos para la gráfica de barras
-        var data = {
-            labels: ['Empleo', 'Apoyo familiares', 'Beca', 'Emprendimiento'],
-            datasets: [{
-            	label: 'Ocultar gráfica',
-                data: [12, 19, 3, 5], // Datos de ventas para cada mes
-                backgroundColor: '#9DC3C2', // Color de fondo de las barras
-                borderColor: '#77A6B6', // Color del borde de las barras
-                borderWidth: 1 // Ancho del borde de las barras
-            }]
-        };
-
-        // Configuración de la gráfica de barras
-        var options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true // Comienza el eje y desde cero
-                    }
-                }]
-            },
-            legend: {
-                display: false // Oculta la leyenda
-            }
-        };
-
-        // Crear la gráfica de barras
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfica
-            data: data,
-            options: options
-        });
-    </script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="js/script.js" defer></script>
 
 	<script>
-        // Función para mostrar u ocultar el menú al hacer clic en el icono
+		// Función para mostrar u ocultar el menú al hacer clic en el icono
         document.querySelector('.menu-icon').addEventListener('click', function() {
             var menu = document.getElementById("menu");
             if (menu.style.display === "block") {
@@ -141,13 +109,7 @@
                 menu.style.display = "block";
             }
         });
-    </script>
-	<div class="footer">@campusCash</div>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="js/script.js" defer></script>
-	<script>
         document.addEventListener('DOMContentLoaded', function() {
             // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
             fetch('http://localhost:3000/api/movimientos/', {
@@ -171,6 +133,8 @@
 				console.log('Movimientos de ingresos:', incomeMovimientos);
 				// Seleccionar el contenedor donde se mostrarán los movimientos
 				const container = document.querySelector('.income-right-container');
+				// Variables para la gráfica
+				let employmentTotal = 0, familyTotal = 0, schoolarshipTotal = 0, entrepenuershipTotal = 0;
 				// Iterar sobre los datos de los movimientos
 				incomeMovimientos.forEach(movimiento => {
 					// Crear un nuevo contenedor de movimiento
@@ -178,14 +142,62 @@
 					movimientoContainer.classList.add('info-container');
 					// Crear el contenido para el movimiento
 					const content = `
-						<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-						<div style="float: left;margin-left: 15px;width: auto;">${movimiento.concept}</div>
-						<div style="float: left;margin-left: 165px;">$${movimiento.amount.toFixed(2)}</div>
+						<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;width: 5%;"><i class="bi bi-currency-dollar"></i> </div>
+						<div style="float: left;margin-left: 15px;width: 60%;">${movimiento.concept}</div>
+						<div style="float: left;margin-right: 65px;width: 5%;">$${movimiento.amount.toFixed(2)}</div>
 					`;
+					if (movimiento.categorie === 'Empleo') {
+                        employmentTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'ApoyoFamiliares') {
+                        familyTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Beca') {
+                        schoolarshipTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Emprendimiento') {
+                        entrepenuershipTotal += movimiento.amount;
+                    }
 					// Agregar el contenido al contenedor de movimiento
 					movimientoContainer.innerHTML = content;
 					// Agregar el contenedor de movimiento al contenedor principal
 					container.appendChild(movimientoContainer);
+				});
+
+				document.getElementById('empleoTotal').textContent = ((employmentTotal*100)/(employmentTotal+schoolarshipTotal+familyTotal+entrepenuershipTotal)).toFixed(1) + '%';
+				document.getElementById('becaTotal').textContent = ((schoolarshipTotal*100)/(employmentTotal+schoolarshipTotal+familyTotal+entrepenuershipTotal)).toFixed(1) + '%';
+				document.getElementById('familiaTotal').textContent = ((familyTotal*100)/(employmentTotal+schoolarshipTotal+familyTotal+entrepenuershipTotal)).toFixed(1) + '%';
+				document.getElementById('emprendimientoTotal').textContent = ((entrepenuershipTotal*100)/(employmentTotal+schoolarshipTotal+familyTotal+entrepenuershipTotal)).toFixed(1) + '%';
+
+				// Datos para la gráfica de barras
+				var data = {
+					datasets: [{
+						label: 'Ocultar gráfica',
+						data: [employmentTotal, familyTotal, schoolarshipTotal, entrepenuershipTotal], // Datos de ventas para cada mes
+						backgroundColor: '#9DC3C2', // Color de fondo de las barras
+						borderColor: '#77A6B6', // Color del borde de las barras
+						borderWidth: 1 // Ancho del borde de las barras
+					}],
+					labels: ['Empleo', 'Apoyo familiares', 'Beca', 'Emprendimiento']
+				};
+
+				// Configuración de la gráfica de barras
+				var options = {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true // Comienza el eje y desde cero
+							}
+						}]
+					},
+					legend: {
+						display: false // Oculta la leyenda
+					}
+				};
+
+				// Crear la gráfica de barras
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar', // Tipo de gráfica
+					data: data,
+					options: options
 				});
 			})
             .catch(error => {
@@ -193,6 +205,7 @@
                 // Manejar el error
             });
         });
+
     </script>
 </body>
 </html>

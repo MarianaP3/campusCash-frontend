@@ -29,19 +29,19 @@
 			<canvas id="myChart" style="width: 1550; text-align: center;" ></canvas>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Alimentación
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="comidaTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Transporte
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="transporteTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Entretenimiento
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="entretenimientoTotal"></div>
 			</div>
 			<div class="vineta">
 				<img src="img/vineta.png" alt="Banner" class="principal-banner" style="height: 20px; width: 20px;margin-right: 20px;">Salud
-				<div class="porcentaje">0%</div>
+				<div class="porcentaje" id="saludTotal"></div>
 			</div>
 		</div>
 		<div href="login.html" class="income-right-container">
@@ -93,46 +93,14 @@
 		</div>
 	</div>
 
+	<div class="footer">@campusCash</div>
 
-
-    <script>
-        // Datos para la gráfica de barras
-        var data = {
-            labels: ['Alimentación', 'Vivienda', 'Transporte', 'Entretenimiento'],
-            datasets: [{
-            	label: 'Ocultar gráfica',
-                data: [12, 19, 3, 5], // Datos de ventas para cada mes
-                backgroundColor: '#9DC3C2', // Color de fondo de las barras
-                borderColor: '#77A6B6', // Color del borde de las barras
-                borderWidth: 1 // Ancho del borde de las barras
-            }]
-        };
-
-        // Configuración de la gráfica de barras
-        var options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true // Comienza el eje y desde cero
-                    }
-                }]
-            },
-            legend: {
-                display: false // Oculta la leyenda
-            }
-        };
-
-        // Crear la gráfica de barras
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfica
-            data: data,
-            options: options
-        });
-    </script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="js/script.js" defer></script>
 
 	<script>
-        // Función para mostrar u ocultar el menú al hacer clic en el icono
+		// Función para mostrar u ocultar el menú al hacer clic en el icono
         document.querySelector('.menu-icon').addEventListener('click', function() {
             var menu = document.getElementById("menu");
             if (menu.style.display === "block") {
@@ -141,14 +109,7 @@
                 menu.style.display = "block";
             }
         });
-    </script>
 
-	<div class="footer">@campusCash</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="js/script.js" defer></script>
-	<script>
         document.addEventListener('DOMContentLoaded', function() {
             // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
             fetch('http://localhost:3000/api/movimientos/', {
@@ -169,9 +130,11 @@
 			.then(data => {
 				const incomeMovimientos = data.filter(movimiento => movimiento.type === 'expense');
 				// Manejar la respuesta del servidor
-				console.log('Movimientos de ingresos:', incomeMovimientos);
+				console.log('Movimientos de egresos:', incomeMovimientos);
 				// Seleccionar el contenedor donde se mostrarán los movimientos
 				const container = document.querySelector('.income-right-container');
+				// Variables para la gráfica
+				let foodTotal = 0, healthTotal = 0, transportTotal = 0, entretainmentTotal = 0;
 				// Iterar sobre los datos de los movimientos
 				incomeMovimientos.forEach(movimiento => {
 					// Crear un nuevo contenedor de movimiento
@@ -179,14 +142,62 @@
 					movimientoContainer.classList.add('info-container');
 					// Crear el contenido para el movimiento
 					const content = `
-						<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;"><i class="bi bi-currency-dollar"></i> </div>
-						<div style="float: left;margin-left: 15px;width: auto;">${movimiento.concept}</div>
-						<div style="float: left;margin-left: 165px;">$${movimiento.amount.toFixed(2)}</div>
+						<div style="float: left;color: #9DC3C2; font-size: 38px;font-weight: bolder;width: 5%;"><i class="bi bi-currency-dollar"></i> </div>
+						<div style="float: left;margin-left: 15px;width: 60%;">${movimiento.concept}</div>
+						<div style="float: left;margin-right: 65px;width: 5%;">$${movimiento.amount.toFixed(2)}</div>
 					`;
+					if (movimiento.categorie === 'Alimentación') {
+                        foodTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Transporte') {
+                        transportTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Entretenimiento') {
+                        entretainmentTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Salud') {
+                        healthTotal += movimiento.amount;
+                    }
 					// Agregar el contenido al contenedor de movimiento
 					movimientoContainer.innerHTML = content;
 					// Agregar el contenedor de movimiento al contenedor principal
 					container.appendChild(movimientoContainer);
+				});
+
+				document.getElementById('comidaTotal').textContent = ((foodTotal*100)/(foodTotal+healthTotal+transportTotal+entretainmentTotal)).toFixed(1) + '%';
+				document.getElementById('saludTotal').textContent = ((healthTotal*100)/(foodTotal+healthTotal+transportTotal+entretainmentTotal)).toFixed(1) + '%';
+				document.getElementById('transporteTotal').textContent = ((transportTotal*100)/(foodTotal+healthTotal+transportTotal+entretainmentTotal)).toFixed(1) + '%';
+				document.getElementById('entretenimientoTotal').textContent = ((entretainmentTotal*100)/(foodTotal+healthTotal+transportTotal+entretainmentTotal)).toFixed(1) + '%';
+
+				// Datos para la gráfica de barras
+				var data = {
+					datasets: [{
+						label: 'Ocultar gráfica',
+						data: [foodTotal, healthTotal, transportTotal, entretainmentTotal], // Datos de ventas para cada mes
+						backgroundColor: '#9DC3C2', // Color de fondo de las barras
+						borderColor: '#77A6B6', // Color del borde de las barras
+						borderWidth: 1 // Ancho del borde de las barras
+					}],
+					labels: ['Alimentación', 'Salud', 'Transporte', 'Entretenimiento']
+        		};
+
+				// Configuración de la gráfica de barras
+				var options = {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true // Comienza el eje y desde cero
+							}
+						}]
+					},
+					legend: {
+						display: false // Oculta la leyenda
+					}
+				};
+
+				// Crear la gráfica de barras
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar', // Tipo de gráfica
+					data: data,
+					options: options
 				});
 			})
             .catch(error => {
