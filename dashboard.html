@@ -1,119 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-	<div class="header">
-		<i class="bi bi-list menu-icon" style="color: white; font-size: 24px;"></i>
-		<div class="header-text">CampusCash</div>
-	</div>
+    <div class="header">
+        <i class="bi bi-list menu-icon" style="color: white; font-size: 24px;"></i>
+        <div class="header-text">CampusCash</div>
+    </div>
 
-	<div id="menu" class="menu">
-	    <a href="index.html" class="menu-text">Iniciar sesión</a>
-	    <a href="login.html" class="menu-text">Registrarse</a>
-	    <a href="income.html" class="menu-text">Ingresos</a>
+    <div id="menu" class="menu">
+        <a href="index.html" class="menu-text">Iniciar sesión</a>
+        <a href="login.html" class="menu-text">Registrarse</a>
+        <a href="income.html" class="menu-text">Ingresos</a>
         <a href="egress.html" class="menu-text">Egresos</a>
         <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
         <a href="education.html" class="menu-text">Educación financiera</a>
-	</div>
+    </div>
 
-	<div class="containerDash">
-		<div class="titleDash">Dashboard</div>
-		<div class="subtitleDash">Mi presupuesto</div>
-	    <div class="chart-container">
-            <canvas id="myChart" style="margin-left: 20px;"></canvas>
-            <img src="img/points.png" alt="points" class="points">
-            <div class="column" style="margin-left: 150px;">
-            	<div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;" >Ingresos</div>
-            	<div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;">$100, 000.00</div>
-            	<div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;" >Egresos</div>
-            	<div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;">$100, 000.00</div>
+    <div class="containerDash">
+        <div class="titleDash">Dashboard</div>
+        <div class="subtitleDash">Mi presupuesto</div>
+        <div class="chart-container">
+            <canvas id="myChart" style="margin-left: 6%;"></canvas>
+            
+            <div class="column" style="margin-left: 100px;">
+                <div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;">Ingresos</div>
+                <div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;" id="incomeTotal"></div>
+                <div class="subtitleDash" style="margin-top: 30px; font-size: 22px; width: 250px;" >Egresos</div>
+                <div class="subtitleDash" style="margin-top: 10px; font-size: 30px; width: 250px;background-image: linear-gradient(to right, #9DC3C2, #9DC3C2); background-position: 0 90%; background-size: 100% 5px; background-repeat: no-repeat;" id="expenseTotal"></div>
             </div>
+			<canvas id="myChart1" style="margin-left: 100px;"></canvas>
         </div>
         <div class="subtitleDash" style="margin-top: 60px; margin-left: 70px; font-size: 22px; width: 250px;">Desglose</div>
         <div class="cards-alignment">
-        	<div class="simple-card" style="margin-left: 70px;">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
+            <!-- Aquí se insertarán las tarjetas de movimientos -->
         </div>
-        <div class="cards-alignment">
-        	<div class="simple-card" style="margin-left: 70px;">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        	<div class="simple-card">
-        		Alimentación<br>
-        		<img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
-        		Valoración:<br> $500
-        	</div>
-        </div>
-
-        <script>
-            // Datos para la gráfica
-            var data = {
-                datasets: [{
-                    data: [50, 100, 300, 30, 48],
-                    backgroundColor: ['#0753B2', '#746EE5', '#00B99D','#FF9F00', '#00E7FF'],
-                    borderWidth: 0 // Establece el ancho del borde en 0 para hacer la gráfica hueca
-                }]
-            };
-            // Configuración de la gráfica
-            var options = {
-    	    	cutoutPercentage: 20
-    		};
-            // Crear la gráfica
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut', // Tipo de gráfica de pastel hueca
-                data: data,
-                options: options
-            });
-        </script>
-	</div>
-	<script>
+    </div>
+    
+    <div class="footer">@campusCash</div>
+    
+    <script>
         // Función para mostrar u ocultar el menú al hacer clic en el icono
         document.querySelector('.menu-icon').addEventListener('click', function() {
             var menu = document.getElementById("menu");
@@ -123,7 +54,140 @@
                 menu.style.display = "block";
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
+            fetch('http://localhost:3000/api/movimientos/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('authToken') // Agrega el token de autenticación si es necesario
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error en la solicitud');
+                }
+            })
+            .then(data => {
+                // Seleccionar el contenedor donde se mostrarán los movimientos
+                const container = document.querySelector('.cards-alignment');
+                // Inicializar las variables para los totales
+                let incomesTotal = 0, expenseTotal = 0, foodTotal = 0, transportTotal = 0, entretainmentTotal = 0, healthTotal = 0, employmentTotal = 0, familyTotal = 0, schoolarshipTotal = 0, entrepenuershipTotal = 0;
+                let cardCounter = 0;
+                let rowContainer;
+				
+				// Iterar sobre los datos de los movimientos
+                data.forEach(movimiento => {
+                    // Crear un nuevo contenedor de movimiento
+					if (cardCounter % 5 === 0) {
+                        rowContainer = document.createElement('div');
+                        rowContainer.classList.add('cards-alignment');
+                        container.appendChild(rowContainer);
+                    }
+
+                    const movimientoContainer = document.createElement('div');
+                    movimientoContainer.classList.add('containerDash'); // Quitar el punto inicial en el nombre de la clase
+                    // Crear el contenido para el movimiento
+                    const content = `
+                        <div class="simple-card" style="margin-left: 50px;">${movimiento.concept}<br>
+                        <img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+                        Valoración:<br> $${movimiento.amount.toFixed(2)}</div>
+                    `;
+                    if (movimiento.type === 'income') {
+                        incomesTotal += movimiento.amount;
+                    } else {
+                        expenseTotal += movimiento.amount;
+                    }
+                    if (movimiento.categorie === 'Alimentación') {
+                        foodTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Transporte') {
+                        transportTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Entretenimiento') {
+                        entretainmentTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Salud') {
+                        healthTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Empleo') {
+                        employmentTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'ApoyoFamiliares') {
+                        familyTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Beca') {
+                        schoolarshipTotal += movimiento.amount;
+                    } else if (movimiento.categorie === 'Emprendimiento') {
+                        entrepenuershipTotal += movimiento.amount;
+                    }
+                    // Agregar el contenido al contenedor de movimiento
+                    movimientoContainer.innerHTML = content;
+                    // Agregar el contenedor de movimiento al contenedor principal
+                    container.appendChild(movimientoContainer);
+                });
+                // Actualizar el contenido del elemento con el total de ingresos y gastos
+                document.getElementById('incomeTotal').textContent = '$' + incomesTotal.toFixed(2);
+                document.getElementById('expenseTotal').textContent = '$' + expenseTotal.toFixed(2);
+
+                // Crear la gráfica con los totales calculados
+                var data = {
+                    datasets: [{
+                        data: [foodTotal, transportTotal, entretainmentTotal, healthTotal],
+                        backgroundColor: ['#0753B2', '#00B99D','#FF9F00', '#00E7FF'],
+                        borderWidth: 0 // Establece el ancho del borde en 0 para hacer la gráfica hueca
+                    }],
+                    labels: ['Alimentación', 'Transporte', 'Entretenimiento', 'Salud']
+                };
+				var data1 = {
+                    datasets: [{
+                        data: [employmentTotal, familyTotal, schoolarshipTotal, entrepenuershipTotal],
+                        backgroundColor: ['#0753B2', '#00B99D','#FF9F00', '#00E7FF'],
+                        borderWidth: 0 // Establece el ancho del borde en 0 para hacer la gráfica hueca
+                    }],
+                    labels: ['Empleo', 'Apoyo Familiares', 'Beca', 'Emprendimiento']
+                };
+                var options = {
+                    cutoutPercentage: 20,
+					plugins: {
+						title: {
+						display: true,
+						text: 'Egresos', // Cambia esto por el título que desees
+							font: {
+								size: 18 // Tamaño de la fuente del título
+							}
+        				}
+    				}
+                };
+				var options1 = {
+                    cutoutPercentage: 20,
+					plugins: {
+						title: {
+						display: true,
+						text: 'Ingresos', // Cambia esto por el título que desees
+							font: {
+								size: 18 // Tamaño de la fuente del título
+							}
+        				}
+    				}
+                };
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: options
+                });
+
+				var ctx1 = document.getElementById('myChart1').getContext('2d');
+                var myChart1 = new Chart(ctx1, {
+                    type: 'doughnut',
+                    data: data1,
+                    options: options1,
+					
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Manejar el error
+            });
+        });
     </script>
-	<div class="footer">@campusCash</div>
 </body>
 </html>

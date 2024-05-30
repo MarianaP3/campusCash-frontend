@@ -145,6 +145,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // console.log('Movimiento guardado:', data);
                 alert('Movimiento guardado exitosamente');
                 // Aquí puedes agregar lógica adicional como actualizar la lista de movimientos en la página
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -197,6 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // console.log('Movimiento guardado:', data);
                 alert('Movimiento guardado exitosamente');
                 // Aquí puedes agregar lógica adicional como actualizar la lista de movimientos en la página
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -206,4 +212,5 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('saveButton no encontrado');
     }
+    
 });
