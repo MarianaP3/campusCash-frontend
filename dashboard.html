@@ -20,6 +20,7 @@
         <a href="egress.html" class="menu-text">Egresos</a>
         <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
         <a href="education.html" class="menu-text">Educación financiera</a>
+        <a id="logoutLink" class="menu-text" style="color: red;">Cerrar sesión</a>
     </div>
 
     <div class="containerDash">
@@ -38,24 +39,41 @@
         </div>
         <div class="subtitleDash" style="margin-top: 60px; margin-left: 70px; font-size: 22px; width: 250px;">Desglose</div>
         <div class="cards-alignment">
-
+            <!-- Aquí se insertarán las tarjetas de movimientos -->
         </div>
     </div>
     
     <div class="footer">@campusCash</div>
     
     <script>
-        // Función para mostrar u ocultar el menú al hacer clic en el icono
-        document.querySelector('.menu-icon').addEventListener('click', function() {
-            var menu = document.getElementById("menu");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-            }
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
+            // Función para mostrar u ocultar el menú al hacer clic en el icono
+            document.querySelector('.menu-icon').addEventListener('click', function() {
+                var menu = document.getElementById("menu");
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "block";
+                }
+            });
+
+            // Función de logout
+    function logout() {
+        localStorage.removeItem('authToken'); // Eliminar el token de autenticación
+        window.location.href = 'index.html'; // Redirigir al usuario a la página de inicio de sesión
+    }
+
+    // Añadir event listener al enlace de logout
+    const logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+            logout(); // Llamar a la función de logout
+        });
+    } else {
+        console.error('logoutLink no encontrado');
+    }
+
             // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
             fetch('http://localhost:3000/api/movimientos/', {
                 method: 'GET',
@@ -73,27 +91,55 @@
             })
             .then(data => {
                 // Seleccionar el contenedor donde se mostrarán los movimientos
-                const container = document.querySelector('.cards-alignment');
+                const container = document.querySelector('.containerDash');
                 // Inicializar las variables para los totales
                 let incomesTotal = 0, expenseTotal = 0, foodTotal = 0, transportTotal = 0, entretainmentTotal = 0, healthTotal = 0, employmentTotal = 0, familyTotal = 0, schoolarshipTotal = 0, entrepenuershipTotal = 0;
                 let cardCounter = 0;
                 let rowContainer;
+                let img = '';
 				
 				// Iterar sobre los datos de los movimientos
                 data.forEach(movimiento => {
-                    // Crear un nuevo contenedor de movimiento
-					if (cardCounter % 5 === 0) {
+
+                    // Crear un nuevo contenedor de fila cada 5 tarjetas
+                    if (cardCounter % 5 === 0) {
                         rowContainer = document.createElement('div');
                         rowContainer.classList.add('cards-alignment');
                         container.appendChild(rowContainer);
+                        console.log('creó un nuevo contenedor')
                     }
-
+                    
                     const movimientoContainer = document.createElement('div');
-                    movimientoContainer.classList.add('containerDash'); // Quitar el punto inicial en el nombre de la clase
+                    movimientoContainer.classList.add('cards-alignment'); // Quitar el punto inicial en el nombre de la clase
                     // Crear el contenido para el movimiento
+                    if (movimiento.categorie === 'Alimentación') {
+                        foodTotal += movimiento.amount;
+                        img = 'img/food.png';
+                    } else if (movimiento.categorie === 'Transporte') {
+                        transportTotal += movimiento.amount;
+                        img = 'img/transport.png';
+                    } else if (movimiento.categorie === 'Entretenimiento') {
+                        entretainmentTotal += movimiento.amount;
+                        img = 'img/entretainment.png';
+                    } else if (movimiento.categorie === 'Salud') {
+                        healthTotal += movimiento.amount;
+                        img = 'img/health.png';
+                    } else if (movimiento.categorie === 'Empleo') {
+                        employmentTotal += movimiento.amount;
+                        img = 'img/employment.png';
+                    } else if (movimiento.categorie === 'ApoyoFamiliares') {
+                        familyTotal += movimiento.amount;
+                        img = 'img/family.png';
+                    } else if (movimiento.categorie === 'Beca') {
+                        schoolarshipTotal += movimiento.amount;
+                        img = 'img/schoolarship.png';
+                    } else if (movimiento.categorie === 'Emprendimiento') {
+                        entrepenuershipTotal += movimiento.amount;
+                        img = 'img/entrepeneurship.png';
+                    }
                     const content = `
                         <div class="simple-card" style="margin-left: 50px;">${movimiento.concept}<br>
-                        <img src="img/food.png" alt="Banner" class="principal-banner" style="height: 55%; width: auto;"> <br>
+                        <img src="${img}" alt="Banner" class="principal-banner" style="height: 50%; width: auto;"> <br>
                         Valoración:<br> $${movimiento.amount.toFixed(2)}</div>
                     `;
                     if (movimiento.type === 'income') {
@@ -101,27 +147,12 @@
                     } else {
                         expenseTotal += movimiento.amount;
                     }
-                    if (movimiento.categorie === 'Alimentación') {
-                        foodTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Transporte') {
-                        transportTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Entretenimiento') {
-                        entretainmentTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Salud') {
-                        healthTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Empleo') {
-                        employmentTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'ApoyoFamiliares') {
-                        familyTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Beca') {
-                        schoolarshipTotal += movimiento.amount;
-                    } else if (movimiento.categorie === 'Emprendimiento') {
-                        entrepenuershipTotal += movimiento.amount;
-                    }
                     // Agregar el contenido al contenedor de movimiento
                     movimientoContainer.innerHTML = content;
                     // Agregar el contenedor de movimiento al contenedor principal
-                    container.appendChild(movimientoContainer);
+                    rowContainer.appendChild(movimientoContainer);
+
+                    cardCounter++;
                 });
                 // Actualizar el contenido del elemento con el total de ingresos y gastos
                 document.getElementById('incomeTotal').textContent = '$' + incomesTotal.toFixed(2);

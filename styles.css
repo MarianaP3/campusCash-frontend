@@ -93,6 +93,7 @@
     justify-content: flex-start; 
     align-items: flex-start; 
     flex-direction: column;
+    border: solid 1px white;
 }
 .header{
 	width: 98%;
@@ -166,7 +167,22 @@
     height: auto;
 }
 
+.cards-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    margin-left: 70px;
+}
+
+.cards-container .containerDash {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
 .simple-card{
+    display: inline-block;
 	border:solid 2px #9DC3C2;
 	font-family: 'Montserrat', sans-serif; 
 	font-size: 20px;
