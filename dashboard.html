@@ -58,21 +58,21 @@
             });
 
             // Función de logout
-    function logout() {
-        localStorage.removeItem('authToken'); // Eliminar el token de autenticación
-        window.location.href = 'index.html'; // Redirigir al usuario a la página de inicio de sesión
-    }
+            function logout() {
+                localStorage.removeItem('authToken'); // Eliminar el token de autenticación
+                window.location.href = 'index.html'; // Redirigir al usuario a la página de inicio de sesión
+            }
 
-    // Añadir event listener al enlace de logout
-    const logoutLink = document.getElementById('logoutLink');
-    if (logoutLink) {
-        logoutLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
-            logout(); // Llamar a la función de logout
-        });
-    } else {
-        console.error('logoutLink no encontrado');
-    }
+            // Añadir event listener al enlace de logout
+            const logoutLink = document.getElementById('logoutLink');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+                    logout(); // Llamar a la función de logout
+                });
+            } else {
+                console.error('logoutLink no encontrado');
+            }
 
             // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
             fetch('http://localhost:3000/api/movimientos/', {

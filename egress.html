@@ -20,6 +20,7 @@
 	    <a href="income.html" class="menu-text">Ingresos</a>
         <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
         <a href="education.html" class="menu-text">Educación financiera</a>
+		<a id="logoutLink" class="menu-text" style="color: red;">Cerrar sesión</a>
 	</div>
 	<div class="titleDash">Egresos</div>
 	<div class="income-container">
@@ -100,8 +101,9 @@
 	<script src="js/script.js" defer></script>
 
 	<script>
-		// Función para mostrar u ocultar el menú al hacer clic en el icono
-        document.querySelector('.menu-icon').addEventListener('click', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+			// Función para mostrar u ocultar el menú al hacer clic en el icono
+			document.querySelector('.menu-icon').addEventListener('click', function() {
             var menu = document.getElementById("menu");
             if (menu.style.display === "block") {
                 menu.style.display = "none";
@@ -110,7 +112,23 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+		// Función de logout
+		function logout() {
+            localStorage.removeItem('authToken'); // Eliminar el token de autenticación
+            window.location.href = 'index.html'; // Redirigir al usuario a la página de inicio de sesión
+        }
+
+        // Añadir event listener al enlace de logout
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+                logout(); // Llamar a la función de logout
+            });
+        } else {
+            console.error('logoutLink no encontrado');
+        }
+
             // Cuando la página se cargue completamente, envía una solicitud GET a la ruta getMovements
             fetch('http://localhost:3000/api/movimientos/', {
                 method: 'GET',

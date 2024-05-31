@@ -19,13 +19,14 @@
 	</div>
 
 	<div id="menu" class="menu">
-	    <a href="index.html" class="menu-text">Iniciar sesión</a>
-	    <a href="login.html" class="menu-text">Registrarse</a>
-	    <a href="dashboard.html" class="menu-text">Dashboard</a>
-	    <a href="income.html" class="menu-text">Ingresos</a>
+        <a href="index.html" class="menu-text">Iniciar sesión</a>
+        <a href="login.html" class="menu-text">Registrarse</a>
+        <a href="dashboard.html" class="menu-text">Dashboard</a>
+        <a href="income.html" class="menu-text">Ingresos</a>
         <a href="egress.html" class="menu-text">Egresos</a>
         <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
-	</div>
+        <a id="logoutLink" class="menu-text" style="color: red;">Cerrar sesión</a>
+    </div>
 
 	<div class="educationMainContainer">
 		<div class="titleDash">Educación Financiera</div>
@@ -251,10 +252,73 @@
         // Función para mostrar u ocultar el menú al hacer clic en el icono
         document.querySelector('.menu-icon').addEventListener('click', function() {
             var menu = document.getElementById("menu");
+            // var authToken = localStorage.getItem('authToken');
+            
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             } else {
                 menu.style.display = "block";
+
+                // Mostrar u ocultar enlaces según la existencia del token
+                if (authToken) {
+                    // Ocultar 'Registrarse' e 'Iniciar sesión'
+                    document.querySelectorAll('.menu-text').forEach(link => {
+                        if (link.textContent === "Registrarse" || link.textContent === "Iniciar sesión") {
+                            link.style.display = 'none';
+                        } else {
+                            link.style.display = 'block';
+                        }
+                    });
+                } else {
+                    // Mostrar 'Registrarse' e 'Iniciar sesión' y ocultar otros enlaces
+                    document.querySelectorAll('.menu-text').forEach(link => {
+                        if (link.textContent === "Registrarse" || link.textContent === "Iniciar sesión") {
+                            link.style.display = 'block';
+                        } else {
+                            link.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('authToken'); // Eliminar el token de autenticación
+            window.location.href = 'login.html'; // Redirigir al usuario a la página de inicio de sesión
+        }
+
+        // Añadir event listener al enlace de logout
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+                logout(); // Llamar a la función de logout
+            });
+        } else {
+            console.error('logoutLink no encontrado');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar u ocultar enlaces según la existencia del token al cargar la página
+            var authToken = localStorage.getItem('authToken');
+            if (authToken) {
+                // Ocultar 'Registrarse' e 'Iniciar sesión'
+                document.querySelectorAll('.menu-text').forEach(link => {
+                    if (link.textContent === "Registrarse" || link.textContent === "Iniciar sesión") {
+                        link.style.display = 'none';
+                    } else {
+                        link.style.display = 'block';
+                    }
+                });
+            } else {
+                // Mostrar 'Registrarse' e 'Iniciar sesión' y ocultar otros enlaces
+                document.querySelectorAll('.menu-text').forEach(link => {
+                    if (link.textContent === "Registrarse" || link.textContent === "Iniciar sesión") {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
             }
         });
     </script>

@@ -32,19 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify(userData)
             })
-            .then(response => response.json().then(data => ({ status: response.status, body: data })))
-            .then(({ status, body }) => {
-                if (status === 200) {
+            .then(response => {
+                if (response.ok) {
                     return response.json();
                 } else {
-                    return response.json().then(data => { throw new Error(data.msg || 'Error en la solicitud') });
+                    throw new Error('Error en la solicitud');
                 }
             })
             .then(data => {
                 const token = data.token; // Asegúrate de que el token viene en data.token
                 localStorage.setItem('authToken', token); // Guarda el token en localStorage
-                console.log('Usuario autenticado, token guardado');
-                window.location.href = 'dashboard.html'; // Mueve la redirección aquí
+                console.log('Usuario autenticado, token guardado'); 
+                alert('Usario creado correctamente, es necesario iniciar sesión')
+                window.location.href = 'index.html'; // Mueve la redirección aquí
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('registerButton no encontrado');
     }
+
 
     // Manejo del inicio de sesión
     if (signinButton) {

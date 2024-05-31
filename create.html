@@ -26,6 +26,7 @@
         <a href="egress.html" class="menu-text">Egresos</a>
         <a href="budget.html" class="menu-text">Análisis de presupuesto</a>
         <a href="education.html" class="menu-text">Educación financiera</a>
+		<a id="logoutLink" class="menu-text" style="color: red;">Cerrar sesión</a>
 	</div>
 
 	<div class="educationMainContainer">
@@ -69,6 +70,22 @@
         });
     </script>
 	<script>
+		// Función de logout
+		function logout() {
+                localStorage.removeItem('authToken'); // Eliminar el token de autenticación
+                window.location.href = 'index.html'; // Redirigir al usuario a la página de inicio de sesión
+            }
+
+            // Añadir event listener al enlace de logout
+            const logoutLink = document.getElementById('logoutLink');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+                    logout(); // Llamar a la función de logout
+                });
+            } else {
+                console.error('logoutLink no encontrado');
+            }
 		document.addEventListener('DOMContentLoaded', function() {
 			const createArticleButton = document.querySelector('.createArticle-button');
 			createArticleButton.addEventListener('click', function(event) {
